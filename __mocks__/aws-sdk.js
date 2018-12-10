@@ -1,6 +1,23 @@
 const mocks = {
+  // STS
+  getCallerIdentityMock: jest.fn().mockReturnValue({
+    ResponseMetadata: { RequestId: 'a86b5dcc-fs72-11e8-8543-f1d7b3effb31' },
+    UserId: '558750028299',
+    Account: '558750028299',
+    Arn: 'arn:aws:iam::558750028299:root'
+  }),
+
   // S3
   createBucketMock: jest.fn().mockReturnValue('bucket-abc'),
+  getBucketLocationMock: jest.fn().mockImplementation((params) => {
+    // also covers integration tests bucket...
+    if (params.Bucket === 'already-removed-bucket' || params.Bucket === 'deploy-bucket') {
+      const error = new Error()
+      error.code = 'NoSuchBucket'
+      return Promise.reject(error)
+    }
+    return Promise.resolve()
+  }),
   deleteBucketMock: jest.fn().mockImplementation((params) => {
     if (params.Bucket === 'already-removed-bucket') {
       const error = new Error()
@@ -55,6 +72,14 @@ const mocks = {
   // CloudWatchEvents
   putRule: jest.fn().mockReturnValue({ RuleArn: 'abc:zxc' }),
   putTargets: jest.fn(),
+  describeRule: jest.fn().mockImplementation((params) => {
+    if (params.Name === 'already-removed-rule') {
+      const error = new Error()
+      error.code = 'ResourceNotFoundException'
+      return Promise.reject(error)
+    }
+    return Promise.resolve({ ScheduleExpression: 'rate(6 minutes)', State: 'DISABLED' })
+  }),
   removeTargets: jest.fn().mockImplementation((params) => {
     if (params.Rule === 'already-removed-rule') {
       const error = new Error()
@@ -87,6 +112,30 @@ const mocks = {
 
   // IAM
   createRoleMock: jest.fn().mockReturnValue({ Role: { Arn: 'arn:aws:iam::XXXXX:role/test-role' } }),
+  getRoleMock: jest.fn().mockImplementation((params) => {
+    if (params.RoleName === 'already-removed-role') {
+      const error = new Error()
+      error.message = 'cannot be found'
+      return Promise.reject(error)
+    }
+
+    const res = {
+      ResponseMetadata: { RequestId: '8e3e8f8c-f491-11e8-90ae-8d96f5df2ad5' },
+      Role: {
+        Path: '/',
+        RoleName: params.RoleName,
+        RoleId: 'AROAJXU5XSYGHT6VNIEMG',
+        Arn: `arn:aws:iam::xxx:role/${params.RoleName}`,
+        CreateDate: 'somedate',
+        AssumeRolePolicyDocument:
+          '%7B%22Version%22%3A%222012-10-17%22%2C%22Statement%22%3A%5B%7B%22Effect%22%3A%22Allow%22%2C%22Principal%22%3A%7B%22Service%22%3A%22lambda.amazonaws.com%22%7D%2C%22Action%22%3A%22sts%3AAssumeRole%22%7D%5D%7D',
+        Tags: [],
+        MaxSessionDuration: 3600
+      }
+    }
+
+    return Promise.resolve(res)
+  }),
   deleteRoleMock: jest.fn().mockImplementation((params) => {
     if (params.RoleName === 'already-removed-role') {
       const error = new Error()
@@ -152,13 +201,6 @@ const mocks = {
     }
     return Promise.resolve()
   }),
-
-  // STS
-  getCallerIdentity: jest.fn().mockReturnValue(
-    Promise.resolve({
-      Account: 'account-id'
-    })
-  ),
 
   // DynamoDB
   createTableMock: jest.fn().mockImplementation((params) => {
@@ -231,6 +273,9 @@ const CloudWatchEvents = function() {
     putRule: (obj) => ({
       promise: () => mocks.putRule(obj)
     }),
+    describeRule: (obj) => ({
+      promise: () => mocks.describeRule(obj)
+    }),
     putTargets: (obj) => ({
       promise: () => mocks.putTargets(obj)
     }),
@@ -247,6 +292,9 @@ const IAM = function() {
   return {
     createRole: (obj) => ({
       promise: () => mocks.createRoleMock(obj)
+    }),
+    getRole: (obj) => ({
+      promise: () => mocks.getRoleMock(obj)
     }),
     deleteRole: (obj) => ({
       promise: () => mocks.deleteRoleMock(obj)
@@ -309,6 +357,9 @@ const S3 = function() {
     createBucket: (obj) => ({
       promise: () => mocks.createBucketMock(obj)
     }),
+    getBucketLocation: (obj) => ({
+      promise: () => mocks.getBucketLocationMock(obj)
+    }),
     listObjectsV2: (obj) => ({
       promise: () => mocks.listObjectsV2Mock(obj)
     }),
@@ -359,14 +410,6 @@ const SNS = function() {
   }
 }
 
-const STS = function() {
-  return {
-    getCallerIdentity: (obj) => ({
-      promise: () => mocks.getCallerIdentity(obj)
-    })
-  }
-}
-
 const DynamoDB = function() {
   return {
     createTable: (obj) => ({
@@ -377,6 +420,14 @@ const DynamoDB = function() {
     }),
     deleteTable: (obj) => ({
       promise: () => mocks.deleteTableMock(obj)
+    })
+  }
+}
+
+const STS = function() {
+  return {
+    getCallerIdentity: (obj) => ({
+      promise: () => mocks.getCallerIdentityMock(obj)
     })
   }
 }
@@ -392,6 +443,6 @@ export default {
   Lambda,
   S3,
   SNS,
-  STS,
-  DynamoDB
+  DynamoDB,
+  STS
 }
