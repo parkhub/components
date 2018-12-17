@@ -1,1 +1,0 @@
-../bin/sls create component "$@"

@@ -24,7 +24,6 @@ describe('index', () => {
     expect(mod).toMatchObject({
       appendKey: expect.any(Function),
       defineComponent: expect.any(Function),
-      defineComponentFromState: expect.any(Function),
       getChildrenIds: expect.any(Function),
       getDependenciesIds: expect.any(Function),
       getKey: expect.any(Function),

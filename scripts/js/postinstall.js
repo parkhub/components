@@ -1,5 +1,6 @@
 /* eslint-disable-next-line */
 'use strict'
+// NOTE BRN: We cannot use es6 here since this runs when devDependencies are not installed
 
 const path = require('path')
 const os = require('os')

@@ -1,7 +1,6 @@
 import { get, isUndefined, pick, propOr, set } from '@serverless/utils'
 import loadApp from '../app/loadApp'
 import defineComponent from '../component/defineComponent'
-import defineComponentFromState from '../component/defineComponentFromState'
 import generateInstanceId from '../component/generateInstanceId'
 // import setKey from '../component/setKey'
 import { DEFAULT_PLUGINS } from '../constants'
@@ -121,7 +120,6 @@ const newContext = (props) => {
       })
     },
     defineComponent: (component, state) => defineComponent(component, state, finalContext),
-    defineComponentFromState: (component) => defineComponentFromState(component, finalContext),
     define: (def) => defType(def, finalContext),
     generateInstanceId: () => {
       const { app } = finalContext

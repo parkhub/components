@@ -2,40 +2,53 @@
   "name": "@serverless/registry",
   "version": "0.3.0",
   "private": true,
+  "description": "Registry of Serverless Components for use with the Serverless Framework",
+  "author": "Serverless, Inc. <hello@serverless.com> (https://serverless.com)",
+  "license": "Apache-2.0",
+  "main": "dist/index.js",
+  "preferGlobal": true,
+  "repository": "github:serverless/components",
+  "bugs": {
+    "url": "https://github.com/serverless/components/issues"
+  },
+  "homepage": "https://github.com/serverless/components#readme",
   "scripts": {
     "build": "bash ./scripts/build.sh",
     "clean": "bash ./scripts/clean.sh",
     "cleanse": "bash ./scripts/cleanse.sh",
+    "docs:gen": "bash ./scripts/docs.sh gen",
     "lint": "bash ./scripts/lint.sh",
-    "setup": "bash ./scripts/setup.sh",
-    "test": "bash ./scripts/test.sh",
-    "postinstall": "bash ./scripts/postinstall.sh",
+    "lint:staged": "bash ./scripts/lint-staged.sh",
     "prepare": "bash ./scripts/prepare.sh",
     "prepublishOnly": "bash ./scripts/prepublishOnly.sh",
+    "setup": "bash ./scripts/setup.sh",
+    "test": "bash ./scripts/test.sh",
     "watch": "bash ./scripts/watch.sh"
   },
-  "dependencies": {
-    "@serverless/utils": "0.0.19",
-    "bluebird": "^3.5.1"
-  },
   "devDependencies": {
-    "@babel/cli": "^7.1.0",
-    "@babel/core": "^7.1.0",
+    "@babel/cli": "^7.1.5",
+    "@babel/core": "^7.1.6",
     "@babel/node": "^7.0.0",
     "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
-    "@babel/preset-env": "^7.1.0",
+    "@babel/preset-env": "^7.1.6",
     "@babel/register": "^7.0.0",
+    "@serverless/utils": "0.0.19",
     "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^10.0.1",
     "babel-jest": "^23.6.0",
-    "eslint": "^5.8.0",
-    "eslint-config-prettier": "^3.1.0",
+    "bluebird": "^3.5.1",
+    "eslint": "^5.9.0",
+    "eslint-config-prettier": "^3.3.0",
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-prettier": "^3.0.0",
+    "fs-extra": "^7.0.1",
     "jest": "^23.6.0",
-    "lint-staged": "^8.0.3",
+    "lint-staged": "^8.0.4",
     "markdown-magic": "^0.1.25",
     "pre-commit": "^1.2.2",
-    "prettier": "^1.14.3"
-  }
+    "prettier": "^1.15.2"
+  },
+  "pre-commit": [
+    "lint:staged"
+  ]
 }

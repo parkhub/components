@@ -1,3 +1,8 @@
+#!/usr/bin/env bash
 set -e
-npm install --prefix ./registry
-npm run build:core
+if [ "$noprepare" == "true" ]; then
+  echo "Setup run directly, skipping prepare..."
+else
+  echo "Running prepare..."
+  bash noinstall="true" $(dirname "$0")/setup.sh
+fi

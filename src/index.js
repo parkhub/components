@@ -7,13 +7,19 @@ if (!global._babelPolyfill) {
 // eslint-disable-next-line global-require
 require('source-map-support/register')
 
-const { createContext, walkReduceTypeChain, SYMBOL_TYPE } = require('./utils')
+const {
+  anyTypeFileExistsAtPath,
+  createContext,
+  walkReduceTypeChain,
+  SYMBOL_TYPE
+} = require('./utils')
 const run = require('./run').default
 const start = require('./start').default
 const commands = require('./commands')
 
 module.exports = {
   // utils
+  anyTypeFileExistsAtPath,
   createContext,
   walkReduceTypeChain,
   SYMBOL_TYPE,

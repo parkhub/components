@@ -1,6 +1,6 @@
 import { all, compact, forEach, isFunction, isObject, isArray, keys } from '@serverless/utils'
 import fs from 'fs-extra'
-import path from 'path'
+import { basename, isAbsolute, join, resolve } from 'path'
 import { version } from '../../../package.json'
 
 const Create = {
@@ -8,9 +8,23 @@ const Create = {
     context.log('Creating component...')
 
     console.log('context.options:', context.options)
-    // const name = process.argv[2]
-    // const directory = path.join(process.cwd(), 'registry', name)
-    //
+    const { options } = context
+    if (options._[1] !== 'component') {
+      throw new Error(`Cannot create a project of unknown type ${options._[1]}`)
+    }
+
+    let { path } = options
+    if (!path) {
+      path = process.cwd()
+    }
+    if (!isAbsolute(path)) {
+      path = resolve(process.cwd(), path)
+    }
+
+    const name = basename(path)
+    console.log('path:', path)
+    console.log('name:', name)
+
     // const packageJsonTemplate = {
     //   name: `@serverless-components/${name}`,
     //   version: version,

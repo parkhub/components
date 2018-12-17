@@ -1,10 +1,5 @@
-/* eslint-disable no-console */
-/* eslint-disable-next-line */
-'use strict'
+import buildComponents from './utils/buildComponents'
 
-const BbPromise = require('bluebird')
+const exec = async () => buildComponents(false, 0)
 
-const buildComponents = require('./buildComponents')
-;(() => {
-  return BbPromise.resolve().then(() => buildComponents(false, 0))
-})()
+exec()
