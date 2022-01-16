@@ -10,6 +10,6 @@
     "@serverless/utils": "0.0.2",
     "aws-sdk": "^2.201.0",
     "mime-types": "^2.1.18",
-    "ramda": "^0.25.0"
+    "ramda": "^0.27.1"
   }
 }
