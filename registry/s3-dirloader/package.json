@@ -9,7 +9,7 @@
   "dependencies": {
     "@serverless/utils": "0.0.2",
     "aws-sdk": "^2.201.0",
-    "mime-types": "^2.1.18",
+    "mime-types": "^2.1.34",
     "ramda": "^0.25.0"
   }
 }
