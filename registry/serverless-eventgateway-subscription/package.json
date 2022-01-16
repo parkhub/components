@@ -7,6 +7,6 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "@serverless/event-gateway-sdk": "^0.10.2"
+    "@serverless/event-gateway-sdk": "^0.12.0"
   }
 }
