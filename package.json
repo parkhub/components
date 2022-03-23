@@ -50,7 +50,7 @@
     "fs-extra": "^5.0.0",
     "graphlib": "^2.1.5",
     "js-yaml": "^3.10.0",
-    "minimist": "^1.2.0",
+    "minimist": "^1.2.6",
     "node-fetch": "^2.1.1",
     "node-where": "^1.1.0",
     "npm-run-all": "^4.1.3",
