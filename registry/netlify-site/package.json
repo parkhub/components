@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "node-fetch": "^2.0.0",
+    "node-fetch": "^3.2.10",
     "parse-github-url": "^1.0.2",
     "ramda": "^0.25.0"
   }
