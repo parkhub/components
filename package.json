@@ -44,7 +44,7 @@
     "babel-preset-env": "^1.7.0",
     "bluebird": "^3.5.1",
     "chalk": "^2.3.2",
-    "concordance": "^3.0.0",
+    "concordance": "^5.0.0",
     "dotenv": "^5.0.1",
     "download": "^6.2.5",
     "fs-extra": "^5.0.0",
@@ -59,7 +59,7 @@
     "raml-validate": "^1.2.0",
     "raven": "^2.4.2",
     "s3-client": "^4.4.1",
-    "semver": "^5.5.0",
+    "semver": "^7.5.2",
     "url-regex": "^4.1.1"
   },
   "devDependencies": {
