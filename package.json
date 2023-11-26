@@ -58,7 +58,7 @@
     "ramda": "^0.25.0",
     "raml-validate": "^1.2.0",
     "raven": "^2.4.2",
-    "s3-client": "^4.4.1",
+    "s3-client": "^4.4.2",
     "semver": "^5.5.0",
     "url-regex": "^4.1.1"
   },
