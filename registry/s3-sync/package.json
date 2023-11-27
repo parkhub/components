@@ -8,6 +8,6 @@
   },
   "dependencies": {
     "aws-sdk": "^2.201.0",
-    "s3-client": "^4.4.1"
+    "s3-client": "^4.4.2"
   }
 }
