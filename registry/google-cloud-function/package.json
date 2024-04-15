@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "@google-cloud/storage": "^1.7.0",
+    "@google-cloud/storage": "^5.17.0",
     "@serverless/utils": "0.0.2",
     "archiver": "^2.1.1",
     "bluebird": "^3.5.2",
