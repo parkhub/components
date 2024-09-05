@@ -7,8 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "@serverless/utils": "0.0.2",
-    "aws-sdk": "^2.201.0",
+    "@serverless/utils": "1.0.0",
+    "aws-sdk": "^2.275.1",
     "mime-types": "^2.1.18",
     "ramda": "^0.25.0"
   }
