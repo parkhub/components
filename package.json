@@ -33,7 +33,7 @@
   },
   "dependencies": {
     "@octokit/rest": "^14.0.5",
-    "@serverless/utils": "0.0.5",
+    "@serverless/utils": "1.0.0",
     "analytics-node": "^3.2.0",
     "aws-sdk": "^2.214.1",
     "axios": "^0.17.1",
@@ -49,7 +49,7 @@
     "download": "^6.2.5",
     "fs-extra": "^5.0.0",
     "graphlib": "^2.1.5",
-    "js-yaml": "^3.10.0",
+    "js-yaml": "^4.1.1",
     "minimist": "^1.2.0",
     "node-fetch": "^2.1.1",
     "node-where": "^1.1.0",
