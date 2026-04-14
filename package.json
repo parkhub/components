@@ -34,9 +34,9 @@
   "dependencies": {
     "@octokit/rest": "^14.0.5",
     "@serverless/utils": "0.0.5",
-    "analytics-node": "^3.2.0",
+    "analytics-node": "^3.5.0",
     "aws-sdk": "^2.214.1",
-    "axios": "^0.17.1",
+    "axios": "^0.21.1",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
